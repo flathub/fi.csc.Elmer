@@ -331,8 +331,8 @@ modules:
       - install -Dm0644 ../${FLATPAK_ID}.metainfo.xml ${FLATPAK_DEST}/share/metainfo/${FLATPAK_ID}.metainfo.xml
     sources:
       - type: git
-        url: https://github.com/ElmerCSC/elmerfem.git
-        branch: devel
+        url: https://github.com/kevinsmia1939/elmerfem.git
+        branch: fix_exit_linux
         # commit: 0ae0b6bc0e86d4bb416bfc559bf99d7b80758efb
         # tag: release-26.1
         # commit: 85e16d005de298691faeeeaccde685fe5bac4da1
