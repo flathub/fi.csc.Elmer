@@ -5,7 +5,8 @@ runtime-version: 5.15-25.08
 command: ElmerGUI
 finish-args:
   - --share=ipc
-  - --socket=x11
+  - --socket=wayland
+  - --socket=fallback-x11
   - --device=dri
 cleanup:
   - /include
@@ -217,19 +218,6 @@ modules:
           project-id: 1785
           stable-only: true
           url-template: https://www.x.org/archive/individual/lib/libXmu-$version.tar.gz
-
-  # - name: OCE
-  #   buildsystem: cmake-ninja
-  #   config-opts:
-  #     - -D3RDPARTY_TK_INCLUDE_DIR:PATH=/app/include
-  #   sources:
-  #     - type: git
-  #       url: https://github.com/tpaviot/oce.git
-  #       tag: upstream/V7_5_0
-  #       commit: 29cf1a701ca269df10f2d1c4037e2826cf704355
-  #       x-checker-data:
-  #         type: git
-  #         tag-pattern: ^(upstream/V[\d._]+)$
 
   - name: Eigen3
     buildsystem: cmake-ninja
