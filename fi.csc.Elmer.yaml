@@ -433,9 +433,3 @@ modules:
         disable-submodules: true
         x-checker-data:
           type: git
-
-  - name: test
-    buildsystem: simple
-    build-commands:
-      - cmake --version
-      - gcc --version
