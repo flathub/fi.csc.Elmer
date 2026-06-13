@@ -20,7 +20,7 @@
     <developer_name>CSC – IT Center for Science</developer_name>
     <screenshots>
         <screenshot type="default">
-            <image>https://raw.githubusercontent.com/ElmerCSC/elmerfem-manuals/main/latex-elmergui/images/elmergui.png</image>
+            <image>https://raw.githubusercontent.com/ElmerCSC/elmerfem-manuals/18525101b6d6ef8951f641329482f19866d8277f/latex-elmergui/images/elmergui.png</image>
         </screenshot>
         <screenshot>
             <image>https://a.fsdn.com/con/app/proj/elmerfem/screenshots/171098.jpg</image>
@@ -28,6 +28,11 @@
     </screenshots>
     <content_rating type="oars-1.1"/>
     <releases>
+        <release version="26.2.1" date="2026-04-29">
+            <description>
+                <p>Update to Elmer FEM version 26.2.1, featuring performance improvements, updated solver capabilities, and integration with MUMPS, OpenCASCADE, ParMetis, and Netgen.</p>
+            </description>
+        </release>
         <release version="9.0" date="2020-11-11">
             <description>
                 <p>New features:</p>
