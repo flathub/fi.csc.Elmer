@@ -41,13 +41,14 @@ modules:
       - USE_OPENMP=0
     make-install-args:
       - PREFIX=/app
-    arch:
-      x86_64:
-        make-args:
-          - TARGET=GENERIC
-      aarch64:
-        make-args:
-          - TARGET=ARMV8
+    build-options:
+      arch:
+        x86_64:
+          make-args:
+            - TARGET=GENERIC
+        aarch64:
+          make-args:
+            - TARGET=ARMV8
     cleanup:
       - /share/man
     sources:
@@ -164,8 +165,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/scivision/parmetis.git
-        branch: main
-        commit: 175ffe29d7980360a4253cbedb978873e8002bfb
+        tag: v1.0.0
+        commit: e7d6c77e7c6448f655339ba0f29bb4a24d412c65
         disable-submodules: true
       - type: archive
         url: https://github.com/scivision/METIS/archive/456244e99d7f0027706033d18bc1b3424d3507cc.tar.gz
@@ -371,7 +372,6 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^(release-[\d.]+)$
-        strip-components: 0
       - type: git
         url: https://github.com/ElmerCSC/Zoltan.git
         dest: contrib/Zoltan_v3.83
