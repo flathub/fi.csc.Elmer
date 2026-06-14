@@ -9,13 +9,6 @@ finish-args:
   - --socket=fallback-x11
   - --device=dri
 cleanup:
-  - /include
-  - /lib/pkgconfig
-  - /lib/cmake
-  - /share/cmake
-  - /share/aclocal
-  - /share/pkgconfig
-  - /share/man
   - /share/doc
   - /share/opencascade/data
   - /doc
@@ -36,12 +29,8 @@ modules:
       - type: archive
         url: https://sourceforge.net/projects/qwt/files/qwt/6.1.6/qwt-6.1.6.tar.bz2
         sha256: 99460d31c115ee4117b0175d885f47c2c590d784206f09815dc058fbe5ede1f6
-      - type: shell
-        commands:
-          - sed 's/QWT_INSTALL_PREFIX\s*=\s*\/usr\/local\/qwt-$$QWT_VERSION/QWT_INSTALL_PREFIX=\/app/g'
-            -i qwtconfig.pri
-          - sed 's/#QWT_CONFIG\s*+=\s*QwtPkgConfig/QWT_CONFIG+=QwtPkgConfig/g' -i
-            qwtconfig.pri
+      - type: patch
+        path: qwt-fix-install-prefix.patch
 
   - name: OpenBLAS
     no-autogen: true
@@ -60,12 +49,6 @@ modules:
         make-args:
           - TARGET=ARMV8
     cleanup:
-      - /bin
-      - /include
-      - /lib/cmake
-      - /lib/*.a
-      - /lib/*.la
-      - /lib/pkgconfig
       - /share/man
     sources:
       - type: archive
@@ -82,6 +65,9 @@ modules:
       - --disable-static
       - --enable-mpi-c
       - --enable-mpi-fortran=all
+    post-install:
+      # Elmer is looking for libMPI::MPI_C, but no clue what it is actually.
+      - ln -s /app/lib/libMPI.so /app/lib/libMPI::MPI_C.so
     sources:
       - type: archive
         url: https://download.open-mpi.org/release/open-mpi/v5.0/openmpi-5.0.9.tar.bz2
@@ -95,11 +81,16 @@ modules:
   - name: hdf5
     buildsystem: cmake-ninja
     builddir: true
+    build-options:
+      env:
+        CC: mpicc
+        CXX: mpicxx
     config-opts:
       - -DBUILD_TESTING:BOOL=OFF
       - -DHDF5_BUILD_EXAMPLES:BOOL=OFF
       - -DHDF5_ENABLE_Z_LIB_SUPPORT:BOOL=ON
       - -DDEFAULT_API_VERSION:STRING=v18
+      - -DHDF5_ENABLE_PARALLEL:BOOL=ON
     cleanup:
       - /share/hdf5_examples
     sources:
@@ -115,6 +106,10 @@ modules:
   - name: netcdf
     buildsystem: cmake-ninja
     builddir: true
+    build-options:
+      env:
+        CC: mpicc
+        CXX: mpicxx
     sources:
       - type: archive
         url: https://github.com/Unidata/netcdf-c/archive/v4.9.3.tar.gz
@@ -144,8 +139,6 @@ modules:
     buildsystem: cmake
     sources:
       - type: archive
-        # url: https://gitlab.inria.fr/scotch/scotch/-/archive/v7.0.1/scotch-v7.0.1.tar.bz2
-        # sha256: 4ce908798ebdf0ae8dc7899a51bbebe6f274c195e28ecbb29724681eee31a6af
         url: https://gitlab.inria.fr/scotch/scotch/-/archive/v7.0.11/scotch-v7.0.11.tar.bz2
         sha256: 82fb468485b153a41031e50a7ca668fccbd3b8561d31dc7535da4210dde01f48
         x-checker-data:
@@ -165,9 +158,9 @@ modules:
   - name: parmetis
     buildsystem: cmake
     config-opts:
+      - -DBUILD_SHARED_LIBS=ON
       - -DFETCHCONTENT_SOURCE_DIR_METIS=/run/build/parmetis/metis-src
       - -DFETCHCONTENT_SOURCE_DIR_GKLIB=/run/build/parmetis/gklib-src
-      - -DBUILD_SHARED_LIBS=ON
     sources:
       - type: git
         url: https://github.com/scivision/parmetis.git
@@ -232,13 +225,11 @@ modules:
           stable-only: true
           url-template: https://gitlab.com/libeigen/eigen/-/archive/$version/eigen-$version.tar.bz2
 
-
   - name: opencascade
     buildsystem: cmake-ninja
     builddir: true
     config-opts:
       - -DCMAKE_POLICY_VERSION_MINIMUM=3.5
-      - -DCMAKE_BUILD_TYPE=Release
       - -DBUILD_MODULE_Draw=OFF
       - -DUSE_TCL=OFF
       - -DUSE_TK=OFF
@@ -247,13 +238,11 @@ modules:
       - -DUSE_RAPIDJSON=OFF
       - -DBUILD_RELEASE_DISABLE_EXCEPTIONS=OFF
       - -DBUILD_DOC_Overview=OFF
-    cleanup:
-      - /bin
     sources:
       - type: git
-        url: https://github.com/FreeCAD/OCCT.git
-        commit: 8db1faa32e326889fc770b4389629d686ccb52d5
-        tag: patched/V7_8_1
+        url: https://github.com/Open-Cascade-SAS/OCCT.git
+        commit: bd2a789f15235755ce4d1a3b07379a2e062fdc2e
+        tag: V7_8_1
       - type: patch
         path: occt-freetype-fix-compilation.patch
 
@@ -269,9 +258,8 @@ modules:
         url: https://github.com/NGsolve/netgen.git
         tag: v6.2.2604
         commit: 3ee489c7d58fdbc2a6708cca3cbaefaae506dc17
+        disable-submodules: true
 
-    # Only work with VTK 9.1.0 for Elemr 9
-    # Only work with VTK 9.1.0 for Elemr 9
   - name: VTK-9
     buildsystem: cmake-ninja
     builddir: true
@@ -282,7 +270,6 @@ modules:
       - -DVTK_USE_SYSTEM_ZLIB:BOOL=ON
       - -DVTK_USE_SYSTEM_EIGEN:BOOL=ON
       - -DVTK_GROUP_ENABLE_Qt=YES
-      - -DCMAKE_BUILD_TYPE=Release
       - -DVTK_LEGACY_REMOVE:BOOL=OFF
       - -DVTK_USE_MPI:BOOL=ON
       - -DVTK_GROUP_ENABLE_MPI=YES
@@ -295,12 +282,6 @@ modules:
           project-id: 15084
           stable-only: true
           url-template: https://www.vtk.org/files/release/$major.$minor/VTK-$version.tar.gz
-
-    # Elmer is looking for libMPI::MPI_C, but no clue what it is actually.
-  - name: create-link-MPI
-    buildsystem: simple
-    build-commands:
-      - ln -s /app/lib/libMPI.so /app/lib/libMPI::MPI_C.so
 
   - name: TBB
     buildsystem: cmake-ninja
@@ -328,8 +309,6 @@ modules:
       cxxflags: -fPIC
     config-opts:
       - -DBLA_VENDOR=OpenBLAS
-      - -DCMAKE_INSTALL_PREFIX=/app
-      - -DCMAKE_INSTALL_LIBDIR=lib
       - -DTrilinos_ENABLE_ML=ON
       - -DTrilinos_ENABLE_INSTALL_CMAKE_CONFIG_FILES=ON
       - -DTrilinos_ENABLE_TESTS=OFF
@@ -352,17 +331,16 @@ modules:
         FC: mpifort
     config-opts:
       - -DBLA_VENDOR=OpenBLAS
-      - -DCMAKE_BUILD_TYPE:STRING=RelWithDebInfo
       - -DWITH_MPI:BOOL=TRUE
       - -DWITH_OpenMP:BOOL=TRUE
-      - -DWITH_MKL:BOOL=FALSE # Seems difficult to compile
+      - -DWITH_MKL:BOOL=FALSE # MKL is proprietary
       - -DWITH_Hypre:BOOL=TRUE
       - -DWITH_ScatteredDataInterpolator=TRUE
       - -DWITH_ElmerIce:BOOL=TRUE
       - -DWITH_ELMERGUI:BOOL=TRUE
       - -DWITH_ELMERGUILOGGER:BOOL=TRUE
       - -DWITH_Trilinos:BOOL=TRUE
-      - -DWITH_FETI4I:BOOL=FALSE # does not detect by Elmer, don't know why.
+      - -DWITH_FETI4I:BOOL=FALSE
       - -DWITH_CONTRIB:BOOL=TRUE
       - -DWITH_Mumps:BOOL=TRUE
       - -DWITH_OpenCASCADE:BOOL=TRUE
@@ -371,8 +349,10 @@ modules:
       - -DWITH_LUA:BOOL=TRUE
       - -DWITH_MATC:BOOL=ON
       - -DWITH_Zoltan:BOOL=FALSE # Set to false to not conflict with one from Trilinos
-      - -DUSE_CONTIGUOUS:BOOL=FALSE
-      - -DCMAKE_PREFIX_PATH=/app
+      - -DUSE_CONTIGUOUS:BOOL=TRUE
+      - -DMUMPSROOT=/app
+      - -DPARMETISROOT=/app
+      - -DParMetis_LIBRARIES=/app/lib/libparmetis.so
       - -DSCALAPACK_LIBRARIES=/app/lib/libopenblas.so
       - -DML_DIR=/app/lib/cmake/ML
       - -DTrilinos_DIR=/app/lib/cmake/Trilinos
@@ -391,6 +371,7 @@ modules:
         x-checker-data:
           type: git
           tag-pattern: ^(release-[\d.]+)$
+        strip-components: 0
       - type: git
         url: https://github.com/ElmerCSC/Zoltan.git
         dest: contrib/Zoltan_v3.83

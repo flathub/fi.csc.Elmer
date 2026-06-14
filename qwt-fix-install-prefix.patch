@@ -1,0 +1,18 @@
+--- qwt-6.1.6/qwtconfig.pri
++++ qwt-6.1.6/qwtconfig.pri
+@@ -19,7 +19,7 @@
+ QWT_INSTALL_PREFIX = $$[QT_INSTALL_PREFIX]
+ 
+ unix {
+-    QWT_INSTALL_PREFIX    = /usr/local/qwt-$$QWT_VERSION
++    QWT_INSTALL_PREFIX    = /app
+     # QWT_INSTALL_PREFIX = /usr/local/qwt-$$QWT_VERSION-qt-$$QT_VERSION
+ }
+ 
+@@ -171,5 +171,5 @@
+ 
+ unix {
+ 
+-    #QWT_CONFIG     += QwtPkgConfig
++    QWT_CONFIG     += QwtPkgConfig
+ }
