@@ -17,10 +17,13 @@
     <url type="homepage">https://www.csc.fi/web/elmer</url>
     <url type="help">https://www.csc.fi/web/elmer/documentation</url>
     <url type="bugtracker">https://github.com/ElmerCSC/elmerfem/issues</url>
-    <developer_name>CSC – IT Center for Science</developer_name>
+    <developer id="fi.csc">
+        <name>CSC – IT Center for Science Ltd.</name>
+    </developer>
     <screenshots>
         <screenshot type="default">
             <image>https://raw.githubusercontent.com/ElmerCSC/elmerfem-manuals/18525101b6d6ef8951f641329482f19866d8277f/latex-elmergui/images/elmergui.png</image>
+            <caption>Main ElmerGUI window</caption>
         </screenshot>
     </screenshots>
     <content_rating type="oars-1.1"/>

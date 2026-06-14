@@ -6,5 +6,5 @@ Exec=ElmerGUI
 Icon=fi.csc.Elmer
 Terminal=false
 Type=Application
-Categories=Science;Education;Physics;
+Categories=Science;Physics;
 Keywords=FEM;Simulation;Physics;Engineering;
