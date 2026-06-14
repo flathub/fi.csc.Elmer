@@ -160,7 +160,7 @@ modules:
     buildsystem: cmake
     config-opts:
       - -DBUILD_SHARED_LIBS=ON
-      - -DFETCHCONTENT_SOURCE_DIR_METIS=/run/build/parmetis/metis-src
+      - -DFETCHCONTENT_SOURCE_DIR_METIS=/run/build/parmetis/METIS
       - -DFETCHCONTENT_SOURCE_DIR_GKLIB=/run/build/parmetis/gklib-src
     sources:
       - type: git
@@ -171,7 +171,7 @@ modules:
       - type: archive
         url: https://github.com/scivision/METIS/archive/456244e99d7f0027706033d18bc1b3424d3507cc.tar.gz
         sha256: c4ec016a6161330b2ccf0b85be6d8dbdf45370be4b985ebcb2950e0d8cdbf722
-        dest: metis-src
+        dest: METIS
       - type: archive
         url: https://github.com/scivision/GKlib/archive/b4c45d104d421d3adb85fb900ca240eba781c95f.tar.gz
         sha256: 053c5d49137345d16256046190916c7aeaff3e80510e7a998625c4af4ecabe6b
