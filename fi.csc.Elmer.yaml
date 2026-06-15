@@ -254,6 +254,10 @@ modules:
       - -DUSE_GUI=OFF
       - -DUSE_PYTHON=OFF
       - -DUSE_OCC=ON
+    build-options:
+      arch:
+        aarch64:
+          cxxflags: -flax-vector-conversions
     sources:
       - type: git
         url: https://github.com/NGsolve/netgen.git
