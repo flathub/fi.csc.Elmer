@@ -293,6 +293,8 @@ modules:
           project-id: 15084
           stable-only: true
           url-template: https://www.vtk.org/files/release/$major.$minor/VTK-$version.tar.gz
+      - type: patch
+        path: vtk-gles-gl-back-left.patch
 
   - name: TBB
     buildsystem: cmake-ninja

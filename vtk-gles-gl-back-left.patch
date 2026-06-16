@@ -1,0 +1,28 @@
+--- a/GUISupport/Qt/QVTKOpenGLWindow.cxx
++++ b/GUISupport/Qt/QVTKOpenGLWindow.cxx
+@@ -281,16 +281,25 @@
+     if (fmt.stereo() && this->RenderWindow->GetStereoRender() &&
+       this->RenderWindow->GetStereoType() == VTK_STEREO_CRYSTAL_EYES)
+     {
++#if defined(GL_BACK_LEFT) && defined(GL_BACK_RIGHT)
+       this->RenderWindowAdapter->blitLeftEye(
+         this->defaultFramebufferObject(), GL_BACK_LEFT, QRect(QPoint(0, 0), deviceSize));
+       this->RenderWindowAdapter->blitRightEye(
+         this->defaultFramebufferObject(), GL_BACK_RIGHT, QRect(QPoint(0, 0), deviceSize));
++#else
++      qWarning("Stereo rendering is not supported on this platform.");
++#endif
+     }
+     // Prevent blitting with "ZSpace Inspire" mode since ZSpace API will take care of it
+     else if (this->RenderWindow->GetStereoType() != VTK_STEREO_ZSPACE_INSPIRE)
+     {
++#if defined(GL_BACK_LEFT)
+       this->RenderWindowAdapter->blit(
+         this->defaultFramebufferObject(), GL_BACK_LEFT, QRect(QPoint(0, 0), deviceSize));
++#else
++      this->RenderWindowAdapter->blit(
++        this->defaultFramebufferObject(), GL_BACK, QRect(QPoint(0, 0), deviceSize));
++#endif
+     }
+     ostate->Pop();
+   }
