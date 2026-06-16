@@ -278,6 +278,12 @@ modules:
       - -DVTK_LEGACY_REMOVE:BOOL=OFF
       - -DVTK_USE_MPI:BOOL=ON
       - -DVTK_GROUP_ENABLE_MPI=YES
+    build-options:
+      arch:
+        aarch64:
+          config-opts:
+            - -DVTK_OPENGL_USE_GLES:BOOL=ON
+            - -DVTK_OPENGL_HAS_EGL:BOOL=ON
     sources:
       - type: archive
         url: https://vtk.org/files/release/9.5/VTK-9.5.2.tar.gz
