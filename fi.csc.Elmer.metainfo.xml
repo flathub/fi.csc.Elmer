@@ -30,7 +30,18 @@
     <releases>
         <release version="26.2.1" date="2026-04-29">
             <description>
-                <p>Update to Elmer FEM version 26.2.1, featuring performance improvements, updated solver capabilities, and integration with MUMPS, OpenCASCADE, ParMetis, and Netgen.</p>
+                <p>Elmer FEM 26.2.1 brings a new ADIOS2-based output solver, expanded solver capabilities, library and finite-element improvements, bug fixes, and updates across ElmerGrid, ElmerGUI, and Elmer/Ice.</p>
+                <p>Highlights:</p>
+                <ul>
+                    <li>New ADIOS2OutputSolver for compact parallel output in ADIOS2/BP5 format, including Fides JSON export for Paraview.</li>
+                    <li>Enhancements to EMPort, MarchingODE, and CalcFields solvers, including improved port handling, eigenmode sorting, automatic shifting, timestep subdivision, multiple components, and nodal Lorenz force support.</li>
+                    <li>Finite element updates such as alternative second-order Nedelec bases, a third-order triangular H(curl) basis, new tetrahedral quadrature, and prism element fixes and support.</li>
+                    <li>Mesh and integration improvements, including binary mesh read/write support, temporal splitting for step-function integration, broader H(curl) Dirichlet support, and new Gauss point namespace options.</li>
+                    <li>Bug fixes for XML timestep formatting, passive interfaces, adaptive integration, mortar projectors, restart handling, MATC locale handling, halo initialization, and quadratic H(curl) approximation.</li>
+                    <li>ElmerGrid now supports binary mesh writing and element type 718; ElmerGUI adds tentative support for element type 718.</li>
+                    <li>Elmer/Ice gains grounding-line flux computation in 3D extruded simulations, GroundedMask and LimitedSolution initialization fixes, passive element fixes, and related test updates.</li>
+                    <li>Continuous integration and testing received many improvements, and some obsolete mortar projector code was removed.</li>
+                </ul>
             </description>
         </release>
         <release version="9.0" date="2020-11-11">
