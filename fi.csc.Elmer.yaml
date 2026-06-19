@@ -71,8 +71,8 @@ modules:
       - ln -s /app/lib/libMPI.so /app/lib/libMPI::MPI_C.so
     sources:
       - type: archive
-        url: https://download.open-mpi.org/release/open-mpi/v5.0/openmpi-5.0.9.tar.bz2
-        sha256: dfb72762531170847af3e4a0f21d77d7b23cf36f67ce7ce9033659273677d80b
+        url: https://download.open-mpi.org/release/open-mpi/v5.0/openmpi-5.0.10.tar.bz2
+        sha256: 0acecc4fc218e5debdbcb8a41d182c6b0f1d29393015ed763b2a91d5d7374cc6
         x-checker-data:
           type: anitya
           project-id: 2554
@@ -113,8 +113,8 @@ modules:
         CXX: mpicxx
     sources:
       - type: archive
-        url: https://github.com/Unidata/netcdf-c/archive/v4.9.3.tar.gz
-        sha256: 990f46d49525d6ab5dc4249f8684c6deeaf54de6fec63a187e9fb382cc0ffdff
+        url: https://github.com/Unidata/netcdf-c/archive/v4.10.0.tar.gz
+        sha256: ce160f9c1483b32d1ba8b7633d7984510259e4e439c48a218b95a023dc02fd4c
         x-checker-data:
           type: anitya
           project-id: 10354
@@ -140,8 +140,8 @@ modules:
     buildsystem: cmake
     sources:
       - type: archive
-        url: https://gitlab.inria.fr/scotch/scotch/-/archive/v7.0.11/scotch-v7.0.11.tar.bz2
-        sha256: 82fb468485b153a41031e50a7ca668fccbd3b8561d31dc7535da4210dde01f48
+        url: https://gitlab.inria.fr/scotch/scotch/-/archive/v7.0.12/scotch-v7.0.12.tar.bz2
+        sha256: 3bdba84f2067398ee8931de5d4b1f3608b483ac56316fd5f348f9c0a594d57ae
         x-checker-data:
           type: anitya
           project-id: 12358
@@ -284,8 +284,8 @@ modules:
             - -DVTK_OPENGL_HAS_EGL:BOOL=ON
     sources:
       - type: archive
-        url: https://vtk.org/files/release/9.5/VTK-9.5.2.tar.gz
-        sha256: cee64b98d270ff7302daf1ef13458dff5d5ac1ecb45d47723835f7f7d562c989
+        url: https://www.vtk.org/files/release/9.6/VTK-9.6.2.tar.gz
+        sha256: aed12cec12a9609179bf66329070266627ca64244a10856a452b2a17ffb04a1d
         x-checker-data:
           type: anitya
           project-id: 15084
@@ -302,8 +302,8 @@ modules:
       - -DTBB_EXAMPLES:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2022.3.0.tar.gz
-        sha256: 01598a46c1162c27253a0de0236f520fd8ee8166e9ebb84a4243574f88e6e50a
+        url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2023.0.0.tar.gz
+        sha256: f8767b971ec6aea25dde58ae0f593e94e7aa75a739a86f67967012f69e2199b1
         x-checker-data:
           type: anitya
           project-id: 227581
