@@ -113,8 +113,8 @@ modules:
         CXX: mpicxx
     sources:
       - type: archive
-        url: https://github.com/Unidata/netcdf-c/archive/v4.10.0.tar.gz
-        sha256: ce160f9c1483b32d1ba8b7633d7984510259e4e439c48a218b95a023dc02fd4c
+        url: https://github.com/Unidata/netcdf-c/archive/v4.10.1.tar.gz
+        sha256: 33c27231c478c3b35da7c7758fbdd02da1fe407abcb16ddfe195f69d164f930d
         x-checker-data:
           type: anitya
           project-id: 10354
@@ -302,8 +302,8 @@ modules:
       - -DTBB_EXAMPLES:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2023.0.0.tar.gz
-        sha256: f8767b971ec6aea25dde58ae0f593e94e7aa75a739a86f67967012f69e2199b1
+        url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2023.1.0.tar.gz
+        sha256: 191288b52e1e6b17198000b64d77d194bb65e791be46ebc606e9b091781e2070
         x-checker-data:
           type: anitya
           project-id: 227581
