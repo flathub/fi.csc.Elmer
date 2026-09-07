@@ -430,11 +430,6 @@ modules:
         url: https://github.com/ElmerCSC/Zoltan.git
         dest: contrib/Zoltan_v3.83
         commit: 7345f7cb26739d5ac2e9308d03fb0d1c5d6dc54f
-        x-checker-data:
-          type: json
-          url: https://api.github.com/repos/ElmerCSC/Zoltan/commits/master
-          commit-query: .sha
-          timestamp-query: .commit.committer.date
       - type: git
         url: https://github.com/MmgTools/mmg
         dest: elmerice/include/mmg
