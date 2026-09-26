@@ -60,8 +60,8 @@ modules:
             - TARGET=ARMV8
     sources:
       - type: archive
-        url: https://github.com/OpenMathLib/OpenBLAS/releases/download/v0.3.30/OpenBLAS-0.3.30.tar.gz
-        sha256: 27342cff518646afb4c2b976d809102e368957974c250a25ccc965e53063c95d
+        url: https://github.com/OpenMathLib/OpenBLAS/releases/download/v0.3.34/OpenBLAS-0.3.34.tar.gz
+        sha256: cd7e129868320cc2d033afa920e31202dfe0b8066a5b66661900ccc0f197dfed
         x-checker-data:
           type: anitya
           project-id: 2540
@@ -78,8 +78,8 @@ modules:
       - ln -s /app/lib/libMPI.so /app/lib/libMPI::MPI_C.so
     sources:
       - type: archive
-        url: https://download.open-mpi.org/release/open-mpi/v5.0/openmpi-5.0.10.tar.bz2
-        sha256: 0acecc4fc218e5debdbcb8a41d182c6b0f1d29393015ed763b2a91d5d7374cc6
+        url: https://download.open-mpi.org/release/open-mpi/v5.0/openmpi-5.0.11.tar.bz2
+        sha256: e668a3c4acd50c41dc204c8a6dd98a611e0f26af89cf677577fa9be8a2698003
         x-checker-data:
           type: anitya
           project-id: 2554
@@ -122,8 +122,8 @@ modules:
         CXX: mpicxx
     sources:
       - type: archive
-        url: https://github.com/Unidata/netcdf-c/archive/v4.10.0.tar.gz
-        sha256: ce160f9c1483b32d1ba8b7633d7984510259e4e439c48a218b95a023dc02fd4c
+        url: https://github.com/Unidata/netcdf-c/archive/v4.10.1.tar.gz
+        sha256: 33c27231c478c3b35da7c7758fbdd02da1fe407abcb16ddfe195f69d164f930d
         x-checker-data:
           type: anitya
           project-id: 10354
@@ -138,8 +138,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/hypre-space/hypre.git
-        commit: 9dc9e18aed6a945a95f966e57daacfb1c269f6ec
-        tag: v3.1.0
+        commit: 6bbcd4c3e230026451e05a42b8db689d70f23c62
+        tag: v3.2.0
         x-checker-data:
           type: git
           tag-pattern: ^(v[\d._]+)$
@@ -149,8 +149,8 @@ modules:
     buildsystem: cmake
     sources:
       - type: archive
-        url: https://gitlab.inria.fr/scotch/scotch/-/archive/v7.0.12/scotch-v7.0.12.tar.bz2
-        sha256: 3bdba84f2067398ee8931de5d4b1f3608b483ac56316fd5f348f9c0a594d57ae
+        url: https://gitlab.inria.fr/scotch/scotch/-/archive/v7.0.15/scotch-v7.0.15.tar.bz2
+        sha256: 4736308b70688d8957a0ff233ef1fbc20b83b5f2ef323fcc343dade37a08cd12
         x-checker-data:
           type: anitya
           project-id: 12358
@@ -162,8 +162,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/scivision/metis
-        commit: 6ce8b56366a7b052e0b422d307dd3c4192e4b29c
-        tag: v5.2.1.2
+        commit: 456244e99d7f0027706033d18bc1b3424d3507cc
+        tag: v5.2.1.4
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
@@ -221,14 +221,14 @@ modules:
     sources:
       - type: git
         url: https://github.com/scivision/mumps.git
-        tag: v5.9.0.3
-        commit: 3b79a655b7abc62ee5bef56782925580e68bf284
+        tag: v5.9.1.2
+        commit: 7be1414e8bdbaf4b3c20e7264b97b2709bdf248f
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
       - type: archive
-        url: https://mumps-solver.org/MUMPS_5.9.0.tar.gz
-        sha256: 02c6efdb91749ec0f82351d40f3f860547272a1eb1d899126a4265b4d6bcc4ca
+        url: https://mumps-solver.org/MUMPS_5.9.1.tar.gz
+        sha256: 659c9b57646b5a003ac618baa1faf9dd2044e46c732b3daaccbc7158003e1b46
         dest: mumps-upstream-src
         x-checker-data:
           type: anitya
@@ -275,8 +275,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/Open-Cascade-SAS/OCCT.git
-        commit: bd2a789f15235755ce4d1a3b07379a2e062fdc2e
-        tag: V7_8_1
+        commit: b8f597c677811d1f9f4d8a97f5ae2825c0353a42
+        tag: V8_0_1
         x-checker-data:
           type: git
           tag-pattern: ^V([\d_]+)$
@@ -297,8 +297,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/NGsolve/netgen.git
-        tag: v6.2.2604
-        commit: 3ee489c7d58fdbc2a6708cca3cbaefaae506dc17
+        tag: v6.2.2607
+        commit: 9642315f7a930701df33c917c537a51a4f3b46cd
         disable-submodules: true
         x-checker-data:
           type: git
@@ -325,8 +325,8 @@ modules:
             - -DVTK_OPENGL_HAS_EGL:BOOL=ON
     sources:
       - type: archive
-        url: https://www.vtk.org/files/release/9.6/VTK-9.6.2.tar.gz
-        sha256: aed12cec12a9609179bf66329070266627ca64244a10856a452b2a17ffb04a1d
+        url: https://www.vtk.org/files/release/9.7/VTK-9.7.0.tar.gz
+        sha256: affdb7a15ec34ee0174407f911ab70b646c7af01161818bbab4e1160b7eff720
         x-checker-data:
           type: anitya
           project-id: 15084
@@ -343,8 +343,8 @@ modules:
       - -DTBB_EXAMPLES:BOOL=OFF
     sources:
       - type: archive
-        url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2023.0.0.tar.gz
-        sha256: f8767b971ec6aea25dde58ae0f593e94e7aa75a739a86f67967012f69e2199b1
+        url: https://github.com/oneapi-src/oneTBB/archive/refs/tags/v2023.1.0.tar.gz
+        sha256: 191288b52e1e6b17198000b64d77d194bb65e791be46ebc606e9b091781e2070
         x-checker-data:
           type: anitya
           project-id: 227581
@@ -370,8 +370,8 @@ modules:
     sources:
       - type: git
         url: https://github.com/trilinos/Trilinos.git
-        tag: trilinos-release-16-2-0
-        commit: f4d642715185dca1b94c91f434a2cf6db9f82014
+        tag: trilinos-release-17-2-1
+        commit: a0de2fe38d6b68f88fc4557abb003ff379561933
         x-checker-data:
           type: git
           tag-pattern: ^trilinos-release-([\d-]+)$
@@ -433,8 +433,8 @@ modules:
       - type: git
         url: https://github.com/MmgTools/mmg
         dest: elmerice/include/mmg
-        tag: v5.6.0
-        commit: 889d408419b5c48833c249695987cf6ec699d399
+        tag: v5.8.0
+        commit: 4d8232c8aebfed877935d75d4d4a67e850962422
         x-checker-data:
           type: git
           tag-pattern: ^v([\d.]+)$
